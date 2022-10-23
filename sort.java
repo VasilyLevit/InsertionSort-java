@@ -1,18 +1,17 @@
 package InsertionSort;
 public class sort {
-    public void sort(int array[]) {
-        for (int left = 0; left < array.length; left++) {
-            // Извлекаем значение элемента
-            int value = array[left];
+    void sort(int array[]) {
+        for (int i = 1; i < array.length; ++i) {
+            int keyValue = array[i];
             // Перемещаемся по элементам влево от извлеченного элемента
-            int i = left - 1;
-            for (; i >= 0; i--) {
-                // Если извлекли значение меньшее — передвигаем больший элемент дальше
-                if (value < array[i]) array[i + 1] = array[i];
-                else break;
+            int j = i - 1;
+            while (j >= 0 && keyValue < array[j]) {
+                // Заменяем ячейку ключевого элемента большим (левым) элементом
+                array[j + 1] = array[j];
+                j -= 1;
             }
             // В освободившееся место вставляем извлеченный элемент
-            array[i + 1] = value;
+            array[j + 1] = keyValue;
         }
     }
 
@@ -24,7 +23,7 @@ public class sort {
     }
 
     public static void main(String[] args) {
-        int arr[] = {12, 16, 13, 17, 22, 19};
+        int arr[] = {22, 16, 13, 17, 12, 19};
         printArray(arr);
         sort object = new sort();
         object.sort(arr);
